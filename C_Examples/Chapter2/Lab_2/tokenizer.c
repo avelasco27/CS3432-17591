@@ -1,42 +1,72 @@
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include <stdbool.h>
 #include <string.h>
 
 /* Return true (non-zero) if c is a whitespace characer
-@@ -41,9 +40,9 @@ bool non_delim_character(char c){
+
+   ('\t' or ' ').
+
+   Zero terminators are not printable (therefore false) */
+
+bool delim_character(char c){
+  if( c == ' ' || c == '\t'){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+
+
+/* Return true (non-zero) if c is a non-whitespace
+
+   character (not tab or space).
+
+   Zero terminators are not printable (therefore false) */
+
+bool non_delim_character(char c){
+  if( c == ' ' || c == '\t'){
+    return false;
+  }else{
+    return true;
+  }
+}
+
+
+
+/* Returns a pointer to the first character of the next
+
    space-separated word*/
 
 char *word_start(char* str){
-  for(int i = 0; *(str+1)! = '\0'; i++{
-      if(non_delim_character(*(str+1))){
-	return str+1;
   for(int i = 0; *(str+i) != '\0'; i++){
       if(non_delim_character(*(str+i))){
 	return str+i;
       }
     }
 }
-@@ -56,9 +55,9 @@ char *word_start(char* str){
+
+
+
+/* Returns a pointer to the first space character of the zero
+
+   terminated string*/
 
 char *end_word(char* str){
   char *start = word_start(str);
-  for(int i = 0; *(start+1)!='\0'; i++{
   for(int i = 0; *(start+i) != '\0'; i++){
       if(delim_character(*(start+i+1))){
-	return start+1;
 	return start+i;
       }
     }	
 }
-@@ -68,15 +67,13 @@ char *end_word(char* str){
+
+// counts the number of words or tokens
+
 int count_tokens(char* str){
   int counter = 0;
   for(int i=0; *(str+i)!='\0'; i++){
-    if(non_(*(str+1))){
-      if(delim_character(*(str+i+1)))
     if(non_delim_character(*(str+1))){
       if(delim_character(*(str+i+1))){
 	counter++;
@@ -44,12 +74,21 @@ int count_tokens(char* str){
   }
 }
   return counter;
-
-
 }
 
 /* Returns a freshly allocated zero-terminated vector of freshly allocated
-@@ -95,11 +92,40 @@ int count_tokens(char* str){
+
+   space-separated tokens from zero-terminated str.
+
+   For example, tokenize("hello world string") would result in:
+
+     tokens[0] = "hello"
+
+     tokens[1] = "world"
+
+     tokens[2] = "string"
+
+     tokens[3] = 0
 */
 
   char *copy_str(char *inStr, short len){
@@ -78,12 +117,11 @@ int count_tokens(char* str){
       printf("%s\n", *(tokens+i));
     }
   }
-
- /* int main(){
+  
+  int main(){
     char string[] = "Hello World BOI";
     print_all_tokens(tokenize(string));
     return 0;
-*/
 
     /*
     printf("Enter a word to tokenize: ");
