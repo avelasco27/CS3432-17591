@@ -31,7 +31,80 @@ void init_regs(){
  * as a parameter to this function.
  */
 bool interpret(char* instr){
-	return true;
+  char **user_input = (char **)malloc(sizeof(char *) * (1));
+  user_input = tokenize(instr, " ");//tokenize user input delim of spaces
+  char lw[] = "LW", sw[] = "SW", add[] = "ADD", addi[] = "ADDI";
+
+if (str_compare(user_input[0], add) == 1) {
+    char **var = (char**)malloc(sizeof(char*) * (1));
+    //var will be updating to each token
+    //tokenize element 2 from instruction
+    var = tokenize(user_input[2], "X");//saving what is after X into variable
+    int register1 = atoi(var[0]);
+    //tokenize element 3 from instruction
+    var = tokenize(user_input[3], "X");
+    int register2 = atoi(var[0]);
+    //tokenize element 1 (register to save added values)
+    var = tokenize(user_input[1], "X");
+    int save_to_Reg = atoi(var[0]);//destination reg.
+    int add = (long long int)reg[reg1] + (long long int)reg[reg2];/*adding
+instructions[2] and [3]*/
+    reg[save_to_Reg] = add;//updating what is in register
+  }
+  else if (str_compare(user_input[0], addi) == 1) {
+    char **var = (char**)malloc(sizeof(char*) * (1));
+    //Tokenize register 1 and add with constant
+    var = tokenize(user_input[2], "X");
+    int reg1 = atoi(var[0]);
+    int constant = atoi(user_input[3]);//turning last part of the token from string to int, which what atoi does.
+    int add = (long long int)reg[reg1] + constant;//adding
+    //Save in destination register
+    var = tokenize(user_input[1], "X");
+    int save_to_Reg = atoi(var[0]);
+    reg[save_to_Reg] = add;
+  }
+  else if (str_compare(user_input[0], sw) == 1) {
+	printf(" Entered Stores Method :)");
+    /*Here would have gone code for Store instruction*/
+  }
+  else if (str_compare(user_input[0], "LW") == 1) {
+	printf(" Entered Load Method :)");
+    /*Here would have gone code for load instruction*/
+  }
+  else {
+    return false;//Return false if user input is not vaild
+  }
+  return true;//Return true when user input is vaild
+}
+/*checking user instruction to above parameter set
+  to make sure instruction is a match
+  by checking it length*/
+int str_compare(char *inStr, char*inStr2){
+  int counter = 0; 
+  int counter2 = 0;
+/*trasvering through instruction string 1, and 
+  incrementing counter then returning total counter*/
+  for (int i = 0; *(inStr + i) != '\0'; i++){
+    counter++;
+  }
+/*trasvering through parameter 2, and incrementing counter
+  then returning total counter2 */
+  for (int i =0; *(inStr2 + i) != '\0'; i++) {
+    counter2++;
+  }
+/*condition checking for comparsion, if theyre
+  the same or not in length*/
+  if (counter == counter2) {
+    for (int i = 0; i < counter; i++) {
+      if (*(inStr+i) != *(inStr2+i)) {
+	return 0;
+      }
+    }
+  }
+  else {
+    return 0;
+  }
+  return 1;
 }
 
 
@@ -55,6 +128,15 @@ void write_read_demo(){
 	printf("Read address %lu (0x%lX): %lu (0x%lX)\n", address, address, read, read); // %lu -> format as an long-unsigned
 }
 
+void print_regs(){
+  int col_size = 10;
+  for(int i = 0; i < 8; i++){
+    printf(" X%02i:%.*lld", i, col_size, (long long int) reg[i]);
+    printf(" X%02i:%.*lld", i+8, col_size, (long long int) reg[i+8]);
+    printf(" X%02i:%.*lld", i+16, col_size, (long long int) reg[i+16]);
+    printf(" X%02i:%.*lld\n", i+24, col_size, (long long int) reg[i+24]);
+  }
+}
 /**
  * Your code goes in the main
  *
@@ -65,6 +147,23 @@ int main(){
 
 	// Below is a sample program to a write-read. Overwrite this with your own code.
 	write_read_demo();
+	print_regs();
+	printf(" RV32 Interpreter.\nType RV32 instructions. Use upper-case letters and space as a delimiter.\nEnter 'EOF' character to end program\n");
+
+
+
+	char* instruction = malloc(1000 * sizeof(char));
+	bool is_null = false;
+	// fgets() returns null if EOF is reached.
+	is_null = fgets(instruction, 1000, stdin) == NULL;
+	while(!is_null){
+	  interpret(instruction);
+	  printf("\n");
+	  print_regs();
+	  printf("\n");
+	  is_null = fgets(instruction, 1000, stdin) == NULL;
+	}
+	printf("Good bye!\n");
 
 	return 0;
 }
