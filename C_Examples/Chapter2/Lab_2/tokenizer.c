@@ -190,10 +190,10 @@ int count_tokens(char* str){
     }
   }
   
-  int main(){
+/*  int main(){
     char string[] = "Hello World BOI";
     print_all_tokens(tokenize(string));
-    return 0;
+    return 0;*/
 
     /*
     printf("Enter a word to tokenize: ");
