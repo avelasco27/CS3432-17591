@@ -34,16 +34,18 @@ bool interpret(char* instr){
   char **user_input = (char **)malloc(sizeof(char *) * (1));
   user_input = tokenize(instr, " ");//tokenize user input delim of spaces
   char lw[] = "LW", sw[] = "SW", add[] = "ADD", addi[] = "ADDI";
-
+}
 if (str_compare(user_input[0], add) == 1) {
     char **var = (char**)malloc(sizeof(char*) * (1));
     //var will be updating to each token
     //tokenize element 2 from instruction
     var = tokenize(user_input[2], "X");//saving what is after X into variable
     int register1 = atoi(var[0]);
+	
     //tokenize element 3 from instruction
     var = tokenize(user_input[3], "X");
     int register2 = atoi(var[0]);
+	
     //tokenize element 1 (register to save added values)
     var = tokenize(user_input[1], "X");
     int save_to_Reg = atoi(var[0]);//destination reg.
@@ -64,11 +66,50 @@ instructions[2] and [3]*/
     reg[save_to_Reg] = add;
   }
   else if (str_compare(user_input[0], sw) == 1) {
-	printf(" Entered Stores Method :)");
+	  char* mem_file = "mem.txt";
+	  char **var = (char**)malloc(sizeof(char*(char*) * (1));
+	
+	//offset tokenize
+	  var = tokenize(user_input[2], "(");
+	  int offset = atoi(var[0]);
+	  var = tokenize(var[1], ")");
+	
+	//tokenize register
+	  var = tokenize(var[0], "X");
+	  int regi = atoi(var[0]);
+	  int32_t memory_addy = regi + offset;
+				      
+	//tokenize memory address to save
+	  var = tokenize(user_input[1], "X");
+	  int saveW = atoi(var[0]);
+				    
+	//Saving word to memory
+	int32_t write = write_address(reg[saveW], memory_addy, mem_file);
+	if(write == (int32_t NULL)
+	   printf("ERROR: unsucessful write to address %0X\n", 0x40);
+	//printf(" Entered Stores Method :)");
     /*Here would have gone code for Store instruction*/
   }
   else if (str_compare(user_input[0], "LW") == 1) {
-	printf(" Entered Load Method :)");
+	  char* mem_file = "mem_file";
+	  char** var = (char**)malloc(sizedof(char*) * (4));
+	  
+	  //tokenize destination register
+	  var = tokenize(user_input[1], "X");
+	  int save_to_Reg = atoi(var[0]);
+	  
+	  //tokenize memory address to load
+	  var = tokenize(user_input[2], "(");
+	  int offset = atoi(var[0]);
+	  var = tokenize(var[1], ")");
+	  var = tokenize(var[0], "X");
+	  int regi = atoi(var[0]);
+	  int32_t address = offset + regi;
+	  
+	  //loading word from memory
+	  int32_t read_value = read_address(address, "mem.txt");
+	  reg[save_to_Reg] = (long long int)read_value;
+	//printf(" Entered Load Method :)");
     /*Here would have gone code for load instruction*/
   }
   else {
