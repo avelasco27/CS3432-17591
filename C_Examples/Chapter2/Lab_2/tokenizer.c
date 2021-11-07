@@ -57,16 +57,6 @@ char *end_word(char* str){
 		}
 	}
 }
- 
-//find this method, don't see it in ross's tokenizer
-  char *start = word_start(str);
-  for(int i = 0; *(start+i) != '\0'; i++){
-      if(delim_character(*(start+i+1))){
-	return start+i;
-      }
-    }	
-}
-
 // counts the number of words or tokens
 
 int count_tokens(char* str){
