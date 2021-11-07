@@ -14,7 +14,7 @@
    Zero terminators are not printable (therefore false) */
 
 bool delim_character(char c){
-  if( c == ' ' || c == '\t'){
+  if( c == ' ' || c == '\t' || c == '\0' || c == ","){
     return true;
   }else{
     return false;
@@ -30,7 +30,7 @@ bool delim_character(char c){
    Zero terminators are not printable (therefore false) */
 
 bool non_delim_character(char c){
-  if( c == ' ' || c == '\t'){
+  if( c == ' ' || c == '\t' || c == ","){
     return false;
   }else{
     return true;
@@ -43,22 +43,22 @@ bool non_delim_character(char c){
    terminated string*/
 
 char *word_start(char* str){
-	for(int i =0; *(str+i) != '\0'; i++){
-		if(non_delim_character(*(str+i))){
-			return str+i;
-		}
-	}	
+	for (int i =0; *(str+i) != '\0'; i++){
+	  if (non_delim_character(*(str+i))){
+	     return str+i;
+    }
+  }	
 }
 char *end_word(char* str){
 	char *start = word_start(str);
-	for(int i =0; *(start+i) != '\0'; i++){
-		if(delim_character(*(start+i+1))){
+	for (int i = 0; *(start+i) != '\0'; i++){
+		if (delim_character(*(start+i+1))){
 			return start+i;
 		}
 	}
 }
  
-
+//find this method, don't see it in ross's tokenizer
   char *start = word_start(str);
   for(int i = 0; *(start+i) != '\0'; i++){
       if(delim_character(*(start+i+1))){
@@ -109,9 +109,9 @@ int count_tokens(char* str){
     char words = count_tokens(str)+1;
     char **arr = (char **)malloc(sizeof(char *) * (words+1));
     int i =0;
-    arr[i] = strtok(str, " ");
+    arr[i] = strtok(str, delim);
     for(i = 1; i < words; i++){
-      arr[i] = strtok(NULL, " ");
+      arr[i] = strtok(NULL, delim);
     }
     arr[i++] = '\0';
     return arr;
