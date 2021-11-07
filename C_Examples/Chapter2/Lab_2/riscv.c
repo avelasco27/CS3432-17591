@@ -64,7 +64,27 @@ instructions[2] and [3]*/
     reg[save_to_Reg] = add;
   }
   else if (str_compare(user_input[0], sw) == 1) {
-	printf(" Entered Stores Method :)");
+    char* mem_file = "mem.txt";
+    char **var = (char**)malloc(sizeof(char*) * (1));
+    //tokenize offset
+    var = tokenize(test[2], "(");
+    int offset = atoi(var[0]);
+    var = tokenize(var[1], ")");
+
+    //tokenize register
+    var = tokenize(var[0], "X");
+    int regi = atoi(var[0]);
+    int32_t memory_addy = regi +offset;
+
+    //Tokenize memory address to save
+    var = tokenize(user_input[1], "X");
+    int saveW = atoi(var[0]);
+
+    //saving word to memory...
+    int31_t write = write_address(reg[saveW], memory_addy, mem_file);
+    if(write == (int32_t) NULL)
+      printf("ERROR: Unsucessful write to address %0X\n", 0x40);
+    //printf(" Entered Stores Method :)");
     /*Here would have gone code for Store instruction*/
   }
   else if (str_compare(user_input[0], "LW") == 1) {

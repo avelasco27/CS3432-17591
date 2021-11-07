@@ -14,7 +14,7 @@
    Zero terminators are not printable (therefore false) */
 
 bool delim_character(char c){
-  if( c == ' ' || c == '\t'){
+  if( c == ' ' || c == '\t' || c == '\0' || c == ','){
     return true;
   }else{
     return false;
@@ -30,7 +30,7 @@ bool delim_character(char c){
    Zero terminators are not printable (therefore false) */
 
 bool non_delim_character(char c){
-  if( c == ' ' || c == '\t'){
+  if( c == ' ' || c == '\t' || c == ','){
     return false;
   }else{
     return true;
@@ -43,11 +43,11 @@ bool non_delim_character(char c){
    terminated string*/
 
 char *word_start(char* str){
-	for(int i =0; *(str+i) != '\0'; i++){
-		if(non_delim_character(*(str+i))){
-			return str+i;
-		}
-	}	
+   for (int i = 0; *(str+i) != '\0'; i++){
+     if (non_delim_character(*(str+i))){
+       return str+i;
+    }
+  }
 }
 char *end_word(char* str){
 	char *start = word_start(str);
