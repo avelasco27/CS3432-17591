@@ -124,4 +124,4 @@ int count_tokens(char* str){
     scanf("%d", &user_word);
     printf("Word is: ", user_word);
     */
-  }
+  //}
