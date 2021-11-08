@@ -89,10 +89,9 @@ instructions[2] and [3]*/
 				    
 	//Saving word to memory
 	int32_t write = write_address(reg[saveW], memory_addy, mem_file);
-	if(write == (int32_t) NULL){
+	if(write == (int32_t) NULL)
 	   printf("ERROR: Unsucessful write to address %0X\n", 0x40);
 	//printf(" Entered Stores Method :)");
-    /*Here would have gone code for Store instruction*/
   }
   else if (str_compare(user_input[0], "LW") == 1) {
 	  char* mem_file = "mem_file";
@@ -120,9 +119,6 @@ instructions[2] and [3]*/
   }else{
 	  return false;
   }
-//   else {
-//     return false;//Return false if user input is not vaild
-//   }
   return true;//Return true when user input is vaild
 }
 /*checking user instruction to above parameter set
