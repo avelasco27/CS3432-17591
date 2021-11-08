@@ -113,7 +113,7 @@ instructions[2] and [3]*/
 	//printf(" Entered Load Method :)");
     /*Here would have gone code for load instruction*/
   }
-  else {
+  //else {
     return false;//Return false if user input is not vaild
   }
   //return true;//Return true when user input is vaild
