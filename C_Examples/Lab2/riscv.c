@@ -116,7 +116,7 @@ instructions[2] and [3]*/
   else {
     return false;//Return false if user input is not vaild
   }
-  return true;//Return true when user input is vaild
+  //return true;//Return true when user input is vaild
 //}
 /*checking user instruction to above parameter set
   to make sure instruction is a match
