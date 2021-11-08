@@ -35,7 +35,10 @@ bool interpret(char* instr){
   char **user_input = (char **)malloc(sizeof(char *) * (1));
   user_input = tokenize(instr, " ");//tokenize user input delim of spaces
   char lw[] = "LW", sw[] = "SW", add[] = "ADD", addi[] = "ADDI";
-//}
+  int counter = 0;
+  for (int i =0; *(user_input + i) != '\0'; i++){
+	counter++;
+}
 if (str_compare(user_input[0], add) == 1) {
     char **var = (char**)malloc(sizeof(char*) * (1));
     //var will be updating to each token
@@ -111,6 +114,11 @@ instructions[2] and [3]*/
 	  int32_t read_value = read_address(address, "mem.txt");
 	  reg[save_to_Reg] = (long long int)read_value;
 	//printf(" Entered Load Method :)");
+  }else if (counter != 3 || counter !4){
+	  return false;
+	  printf("%d", counter);
+  }else{
+	  return false;
   }
 //   else {
 //     return false;//Return false if user input is not vaild
