@@ -35,7 +35,7 @@ bool interpret(char* instr){
   char **user_input = (char **)malloc(sizeof(char *) * (1));
   user_input = tokenize(instr, " ");//tokenize user input delim of spaces
   char lw[] = "LW", sw[] = "SW", add[] = "ADD", addi[] = "ADDI";
-}
+//}
 if (str_compare(user_input[0], add) == 1) {
     char **var = (char**)malloc(sizeof(char*) * (1));
     //var will be updating to each token
@@ -50,7 +50,7 @@ if (str_compare(user_input[0], add) == 1) {
     //tokenize element 1 (register to save added values)
     var = tokenize(user_input[1], "X");
     int save_to_Reg = atoi(var[0]);//destination reg.
-    int add = (long long int)reg[reg1] + (long long int)reg[reg2];/*adding
+    int add = (long long int)reg[register1] + (long long int)reg[register2];/*adding
 instructions[2] and [3]*/
     reg[save_to_Reg] = add;//updating what is in register
   }
@@ -60,7 +60,7 @@ instructions[2] and [3]*/
     var = tokenize(user_input[2], "X");
     int reg1 = atoi(var[0]);
     int constant = atoi(user_input[3]);//turning last part of the token from string to int, which what atoi does.
-    int add = (long long int)reg[reg1] + constant;//adding
+    int add = (long long int)reg[register1] + constant;//adding
     //Save in destination register
     var = tokenize(user_input[1], "X");
     int save_to_Reg = atoi(var[0]);
@@ -111,13 +111,12 @@ instructions[2] and [3]*/
 	  int32_t read_value = read_address(address, "mem.txt");
 	  reg[save_to_Reg] = (long long int)read_value;
 	//printf(" Entered Load Method :)");
-    /*Here would have gone code for load instruction*/
- // }
-  //else {
+  }
+  else {
     return false;//Return false if user input is not vaild
   }
-  //return true;//Return true when user input is vaild
-//}
+  return true;//Return true when user input is vaild
+}
 /*checking user instruction to above parameter set
   to make sure instruction is a match
   by checking it length*/
