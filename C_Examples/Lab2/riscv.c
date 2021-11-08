@@ -71,7 +71,7 @@ instructions[2] and [3]*/
   }
   else if (str_compare(user_input[0], sw) == 1) {
 	  char* mem_file = "mem.txt";
-	  char **var = (char**)malloc(sizeof(char*(char*) * (1));
+	  char **var = (char**)malloc(sizeof(char*) * (1));
 	
 	//offset tokenize
 	  var = tokenize(user_input[2], "(");
