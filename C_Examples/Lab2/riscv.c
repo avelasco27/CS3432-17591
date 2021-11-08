@@ -114,7 +114,7 @@ instructions[2] and [3]*/
 	  int32_t read_value = read_address(address, "mem.txt");
 	  reg[save_to_Reg] = (long long int)read_value;
 	//printf(" Entered Load Method :)");
-  }else if (counter != 3 || counter !4){
+  }else if (counter != 3 || counter != 4){
 	  return false;
 	  printf("%d", counter);
   }else{
