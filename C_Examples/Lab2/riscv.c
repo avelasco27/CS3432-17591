@@ -189,11 +189,11 @@ void print_regs(){
 int main(){
 	// Do not write any code between init_regs
 	init_regs(); // DO NOT REMOVE THIS LINE
-	print_regs();
+	//print_regs();
 
 	// Below is a sample program to a write-read. Overwrite this with your own code.
-	//write_read_demo();
-	//print_regs();
+	write_read_demo();
+	print_regs();
 	printf(" RV32 Interpreter.\nType RV32 instructions. Use upper-case letters and space as a delimiter.\nEnter 'EOF' character to end program\n");
 
 
