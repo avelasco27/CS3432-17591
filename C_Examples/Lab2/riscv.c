@@ -95,7 +95,7 @@ instructions[2] and [3]*/
   }
   else if (str_compare(user_input[0], "LW") == 1) {
 	  char* mem_file = "mem_file";
-	  char** var = (char**)malloc(sizedof(char*) * (4));
+	  char** var = (char**)malloc(sizeof(char*) * (4));
 	  
 	  //tokenize destination register
 	  var = tokenize(user_input[1], "X");
