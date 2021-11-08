@@ -112,7 +112,7 @@ instructions[2] and [3]*/
 	  reg[save_to_Reg] = (long long int)read_value;
 	//printf(" Entered Load Method :)");
     /*Here would have gone code for load instruction*/
-  }
+ // }
   //else {
     return false;//Return false if user input is not vaild
   }
