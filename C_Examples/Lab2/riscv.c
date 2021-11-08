@@ -112,9 +112,9 @@ instructions[2] and [3]*/
 	  reg[save_to_Reg] = (long long int)read_value;
 	//printf(" Entered Load Method :)");
   }
-  else {
-    return false;//Return false if user input is not vaild
-  }
+//   else {
+//     return false;//Return false if user input is not vaild
+//   }
   return true;//Return true when user input is vaild
 }
 /*checking user instruction to above parameter set
@@ -185,10 +185,11 @@ void print_regs(){
 int main(){
 	// Do not write any code between init_regs
 	init_regs(); // DO NOT REMOVE THIS LINE
+	print_regs();
 
 	// Below is a sample program to a write-read. Overwrite this with your own code.
-	write_read_demo();
-	print_regs();
+	//write_read_demo();
+	//print_regs();
 	printf(" RV32 Interpreter.\nType RV32 instructions. Use upper-case letters and space as a delimiter.\nEnter 'EOF' character to end program\n");
 
 
