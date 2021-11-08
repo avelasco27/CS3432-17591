@@ -96,7 +96,7 @@ int count_tokens(char* str){
 	return copy;
   }
 
-  char** tokenize(char* str){
+  char** tokenize(char* str, char delim[]){
     char words = count_tokens(str)+1;
     char **arr = (char **)malloc(sizeof(char *) * (words+1));
     int i =0;
