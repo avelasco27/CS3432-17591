@@ -89,8 +89,8 @@ instructions[2] and [3]*/
 				    
 	//Saving word to memory
 	int32_t write = write_address(reg[saveW], memory_addy, mem_file);
-	if(write == (int32_t NULL)
-	   printf("ERROR: unsucessful write to address %0X\n", 0x40);
+	if(write == (int32_t) NULL){
+	   printf("ERROR: Unsucessful write to address %0X\n", 0x40);
 	//printf(" Entered Stores Method :)");
     /*Here would have gone code for Store instruction*/
   }
